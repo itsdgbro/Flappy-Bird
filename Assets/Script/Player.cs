@@ -26,4 +26,9 @@ public class Player : MonoBehaviour
     void FixedUpdate(){
         transform.rotation = Quaternion.Euler(0, 0, rb.velocity.y * rotationSpeed);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision){
+        Debug.Log("Collide");
+        GameManager.instance.GameOver();
+    }
 }
