@@ -1,27 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField]private GameObject gameOverCanvas;
+    [SerializeField] private GameObject gameOverCanvas;
 
-    private void Awake(){
-        if(instance == null){
+    private void Awake()
+    {
+        if (instance == null)
+        {
             instance = this;
         }
         Time.timeScale = 1f;
+        gameOverCanvas.SetActive(false);
+        QualitySettings.vSyncCount = 1;
     }
-    
-    public void GameOver(){
+
+    public void GameOver()
+    {
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void RestartGame(){
+    public void RestartGame()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
